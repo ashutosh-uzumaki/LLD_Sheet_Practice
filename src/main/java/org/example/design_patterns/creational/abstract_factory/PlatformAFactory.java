@@ -1,4 +1,4 @@
-package org.example.design_patterns.abstract_factory;
+package org.example.design_patterns.creational.abstract_factory;
 
 public class PlatformAFactory implements PlatformFactory{
     @Override

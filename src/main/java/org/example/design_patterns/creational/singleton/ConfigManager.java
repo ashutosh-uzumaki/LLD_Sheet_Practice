@@ -1,4 +1,4 @@
-package org.example.design_patterns.singleton;
+package org.example.design_patterns.creational.singleton;
 
 import java.util.concurrent.ConcurrentHashMap;
 

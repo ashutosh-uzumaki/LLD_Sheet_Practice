@@ -1,6 +1,4 @@
-package org.example.design_patterns.factory;
-
-import java.time.LocalDateTime;
+package org.example.design_patterns.creational.factory;
 
 public class NotificationRequest {
     private final String sender;

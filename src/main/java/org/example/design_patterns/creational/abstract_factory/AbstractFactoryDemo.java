@@ -1,4 +1,4 @@
-package org.example.design_patterns.abstract_factory;
+package org.example.design_patterns.creational.abstract_factory;
 
 public class AbstractFactoryDemo {
     public static void main(String[] args) {

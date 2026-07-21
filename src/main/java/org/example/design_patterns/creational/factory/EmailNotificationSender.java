@@ -1,4 +1,4 @@
-package org.example.design_patterns.factory;
+package org.example.design_patterns.creational.factory;
 
 public class EmailNotificationSender implements NotificationSender{
     @Override
