@@ -2,6 +2,7 @@ package org.example.design_patterns.behavioral.observer;
 
 import java.math.BigDecimal;
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Order {
     private final String orderId;
@@ -14,7 +15,7 @@ public class Order {
         this.orderId = Objects.requireNonNull(orderId, "orderId cannot be null");
         this.productIds = new ArrayList<>(Objects.requireNonNull(productIds, "productIds cannot be null"));
         this.amount = Objects.requireNonNull(amount, "amount cannot be null");
-        observers = new ArrayList<>();
+        observers = new CopyOnWriteArrayList<>();
     }
 
     public void registerObserver(OrderObserver observer){
