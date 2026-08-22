@@ -4,33 +4,81 @@ import org.example.parking_lot.models.*;
 import org.example.parking_lot.service.PricingCalculator;
 import org.example.parking_lot.service.impl.FlatRatePricing;
 
-import java.math.BigDecimal;
 import java.util.List;
 
+import java.util.concurrent.CountDownLatch;
+
 public class ParkingLotDemo {
-    public static void main(String[] args) {
+
+    public static void main(String[] args)
+            throws InterruptedException {
+
         List<Floor> floors = List.of(
-                new Floor(1, 2, 1, 0),
-                new Floor(2, 0, 1, 0)
+                new Floor(1, 2, 0, 0)
         );
-        PricingCalculator pricingCalculator = new FlatRatePricing();
-        ParkingLot parkingLot = new ParkingLot(floors, pricingCalculator);
-        Vehicle bike = new Bike("KA 01 1111");
-        Vehicle bike1 = new Bike("KA 02 1112");
-        Vehicle bike2 = new Bike("KA 03 1114");
-        Vehicle car = new Car("KA 03 1113");
-        ParkingTicket carTicket = parkingLot.park(car);
-        Vehicle car1 = new Car("KA 04 1114");
-        ParkingTicket secondCarTicket = parkingLot.park(car1);
-        ParkingTicket ticket = parkingLot.park(bike);
-        ParkingTicket ticket1 = parkingLot.park(bike1);
-        ParkingTicket ticket2 = null;
-        try{
-            parkingLot.park(bike2);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+
+        PricingCalculator pricingCalculator =
+                new FlatRatePricing();
+
+        ParkingLot parkingLot =
+                new ParkingLot(floors, pricingCalculator);
+
+        int numberOfEntryGates = 5;
+
+        CountDownLatch startLatch =
+                new CountDownLatch(1);
+
+        CountDownLatch doneLatch =
+                new CountDownLatch(numberOfEntryGates);
+
+        for (int i = 1; i <= numberOfEntryGates; i++) {
+
+            String registrationNumber =
+                    "KA-01-" + (1000 + i);
+
+            Thread entryGate = new Thread(() -> {
+
+                try {
+                    // Wait until all gates are ready
+                    startLatch.await();
+
+                    Vehicle bike =
+                            new Bike(registrationNumber);
+
+                    ParkingTicket ticket =
+                            parkingLot.park(bike);
+
+                    System.out.println(
+                            Thread.currentThread().getName()
+                                    + " parked "
+                                    + registrationNumber
+                                    + " at spot "
+                                    + ticket.getParkingSpot().getSpotId()
+                    );
+
+                } catch (Exception e) {
+
+                    System.out.println(
+                            Thread.currentThread().getName()
+                                    + " failed: "
+                                    + e.getMessage()
+                    );
+
+                } finally {
+                    doneLatch.countDown();
+                }
+
+            }, "Entry-Gate-" + i);
+
+            entryGate.start();
         }
-        BigDecimal fee = parkingLot.unpark(ticket.getRegistrationNumber());
-        System.out.println("Fee Paid "+fee);
+
+        // Release all gates at approximately the same time
+        startLatch.countDown();
+
+        // Wait for every gate to finish
+        doneLatch.await();
+
+        System.out.println("All entry gates completed.");
     }
 }
