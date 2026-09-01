@@ -19,6 +19,11 @@ mutated in two separate steps inside `Cache.put`. That's exactly why #2
 internally — the lock has to wrap both calls together, at the `Cache`
 level. Numbers in brackets below cross-reference the punch list.
 
+![LRU Cache UML class diagram](uml-diagram.svg)
+
+<details>
+<summary>Mermaid source (if the SVG above doesn't render in your viewer)</summary>
+
 ```mermaid
 classDiagram
     class Cache~K,V~ {
@@ -73,6 +78,8 @@ classDiagram
     LruEvictionPolicy --> Node : nodeMap
     DoublyLinkedList *-- Node : head/tail/next/prev
 ```
+
+</details>
 
 Legend: dashed arrow = *uses* (dependency), dashed hollow-triangle =
 *realizes* (implements interface), filled diamond = *owns* (composition).
