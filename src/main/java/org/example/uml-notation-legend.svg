@@ -1,0 +1,86 @@
+<svg viewBox="0 0 700 460" xmlns="http://www.w3.org/2000/svg" role="img"
+     aria-label="Legend of six UML class-diagram relationship styles: composition (filled diamond, owns), aggregation (hollow diamond, has), association (solid open arrow, references), dependency (dashed open arrow, uses), realization (dashed hollow triangle, implements), generalization (solid hollow triangle, extends).">
+  <defs>
+    <marker id="legArrowOpen" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M1,1 L9,5 L1,9" fill="none" stroke="#55635F" stroke-width="1.4"/>
+    </marker>
+    <marker id="legTriHollow" viewBox="0 0 14 12" refX="12.5" refY="6" markerWidth="15" markerHeight="13" orient="auto-start-reverse">
+      <path d="M1,1 L13,6 L1,11 Z" fill="#FFFFFF" stroke="#55635F" stroke-width="1.3"/>
+    </marker>
+    <marker id="legDiamondFilled" viewBox="0 0 14 9" refX="1" refY="4.5" markerWidth="14" markerHeight="9" orient="auto">
+      <polygon points="1,4.5 7,1 13,4.5 7,8" fill="#55635F"/>
+    </marker>
+    <marker id="legDiamondHollow" viewBox="0 0 14 9" refX="1" refY="4.5" markerWidth="14" markerHeight="9" orient="auto">
+      <polygon points="1,4.5 7,1 13,4.5 7,8" fill="#FFFFFF" stroke="#55635F" stroke-width="1.2"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="700" height="460" fill="#FFFFFF"/>
+
+  <!-- Row 1: Composition -->
+  <g>
+    <rect x="40" y="26" width="70" height="32" rx="4" fill="#FFFFFF" stroke="#172227" stroke-width="1.3"/>
+    <text x="75" y="46" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="11" fill="#172227">Owner</text>
+    <rect x="590" y="26" width="70" height="32" rx="4" fill="#FFFFFF" stroke="#172227" stroke-width="1.3"/>
+    <text x="625" y="46" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="11" fill="#172227">Part</text>
+    <line x1="110" y1="42" x2="590" y2="42" stroke="#55635F" stroke-width="1.4" marker-start="url(#legDiamondFilled)"/>
+    <text x="350" y="20" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12.5" font-weight="600" fill="#172227">Composition — solid line, filled diamond</text>
+    <text x="350" y="66" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-style="italic" font-size="11" fill="#55635F">"owns" — Part cannot outlive or be shared away from Owner</text>
+  </g>
+
+  <!-- Row 2: Aggregation -->
+  <g>
+    <rect x="40" y="98" width="70" height="32" rx="4" fill="#FFFFFF" stroke="#172227" stroke-width="1.3"/>
+    <text x="75" y="118" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="11" fill="#172227">Whole</text>
+    <rect x="590" y="98" width="70" height="32" rx="4" fill="#FFFFFF" stroke="#172227" stroke-width="1.3"/>
+    <text x="625" y="118" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="11" fill="#172227">Part</text>
+    <line x1="110" y1="114" x2="590" y2="114" stroke="#55635F" stroke-width="1.4" marker-start="url(#legDiamondHollow)"/>
+    <text x="350" y="92" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12.5" font-weight="600" fill="#172227">Aggregation — solid line, hollow diamond</text>
+    <text x="350" y="138" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-style="italic" font-size="11" fill="#55635F">"has" — Part can be shared or outlive Whole</text>
+  </g>
+
+  <!-- Row 3: Association -->
+  <g>
+    <rect x="40" y="170" width="70" height="32" rx="4" fill="#FFFFFF" stroke="#172227" stroke-width="1.3"/>
+    <text x="75" y="190" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="11" fill="#172227">A</text>
+    <rect x="590" y="170" width="70" height="32" rx="4" fill="#FFFFFF" stroke="#172227" stroke-width="1.3"/>
+    <text x="625" y="190" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="11" fill="#172227">B</text>
+    <line x1="110" y1="186" x2="588" y2="186" stroke="#55635F" stroke-width="1.4" marker-end="url(#legArrowOpen)"/>
+    <text x="350" y="164" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12.5" font-weight="600" fill="#172227">Association — solid line, open arrowhead</text>
+    <text x="350" y="210" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-style="italic" font-size="11" fill="#55635F">"references" — A keeps a field pointing at B</text>
+  </g>
+
+  <!-- Row 4: Dependency -->
+  <g>
+    <rect x="40" y="242" width="70" height="32" rx="4" fill="#FFFFFF" stroke="#172227" stroke-width="1.3"/>
+    <text x="75" y="262" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="11" fill="#172227">A</text>
+    <rect x="590" y="242" width="70" height="32" rx="4" fill="#FFFFFF" stroke="#172227" stroke-width="1.3"/>
+    <text x="625" y="262" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="11" fill="#172227">B</text>
+    <line x1="110" y1="258" x2="588" y2="258" stroke="#55635F" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#legArrowOpen)"/>
+    <text x="350" y="236" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12.5" font-weight="600" fill="#172227">Dependency — dashed line, open arrowhead</text>
+    <text x="350" y="282" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-style="italic" font-size="11" fill="#55635F">"uses" — A needs B briefly (param, local, or injected abstraction)</text>
+  </g>
+
+  <!-- Row 5: Realization -->
+  <g>
+    <rect x="40" y="314" width="70" height="32" rx="4" fill="#FFFFFF" stroke="#172227" stroke-width="1.3"/>
+    <text x="75" y="334" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="11" fill="#172227">Impl</text>
+    <rect x="590" y="314" width="70" height="32" rx="4" fill="#FFFFFF" stroke="#1F6F78" stroke-width="1.3" stroke-dasharray="4 2"/>
+    <text x="625" y="330" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-style="italic" font-size="8.5" fill="#1F6F78">&#171;interface&#187;</text>
+    <text x="625" y="341" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="10" fill="#172227">B</text>
+    <line x1="110" y1="330" x2="588" y2="330" stroke="#55635F" stroke-width="1.3" stroke-dasharray="5 3" marker-end="url(#legTriHollow)"/>
+    <text x="350" y="308" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12.5" font-weight="600" fill="#172227">Realization — dashed line, hollow triangle</text>
+    <text x="350" y="354" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-style="italic" font-size="11" fill="#55635F">"implements" — Impl fulfills interface B's contract</text>
+  </g>
+
+  <!-- Row 6: Generalization -->
+  <g>
+    <rect x="40" y="386" width="70" height="32" rx="4" fill="#FFFFFF" stroke="#172227" stroke-width="1.3"/>
+    <text x="75" y="406" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="11" fill="#172227">Child</text>
+    <rect x="590" y="386" width="70" height="32" rx="4" fill="#FFFFFF" stroke="#172227" stroke-width="1.3"/>
+    <text x="625" y="406" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="11" fill="#172227">Parent</text>
+    <line x1="110" y1="402" x2="588" y2="402" stroke="#55635F" stroke-width="1.4" marker-end="url(#legTriHollow)"/>
+    <text x="350" y="380" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12.5" font-weight="600" fill="#172227">Generalization — solid line, hollow triangle</text>
+    <text x="350" y="426" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-style="italic" font-size="11" fill="#55635F">"extends" — Child inherits Parent's fields and behavior</text>
+  </g>
+</svg>
