@@ -30,44 +30,56 @@ classDiagram
         -storage: Storage~K,V~
         -evictionPolicy: EvictionPolicy~K~
         -maxCapacity: int
-        +put(key, value)
-        +get(key) V
+        +put(key: K, value: V) void
+        +get(key: K) V
     }
 
     class Storage~K,V~ {
         <<interface>>
-        +add(key, value)
-        +get(key) V
-        +remove(key)
-        +contains(key) boolean
+        +add(key: K, value: V) void
+        +get(key: K) V
+        +remove(key: K) void
+        +contains(key: K) boolean
         +size() int
     }
 
     class MapStorage~K,V~ {
         -storageMap: Map~K,V~
+        +add(key: K, value: V) void
+        +get(key: K) V
+        +remove(key: K) void
+        +contains(key: K) boolean
+        +size() int
     }
 
     class EvictionPolicy~K~ {
         <<interface>>
-        +addNewNode(key)
-        +markAccessed(key)
+        +addNewNode(key: K) void
+        +markAccessed(key: K) void
         +evict() K
     }
 
     class LruEvictionPolicy~K~ {
         -nodeMap: Map~K, Node~K~~
         -list: DoublyLinkedList~K~
+        +evict() K
+        +addNewNode(key: K) void
+        +markAccessed(key: K) void
     }
 
     class DoublyLinkedList~K~ {
         -head: Node~K~
         -tail: Node~K~
+        +add(node: Node~K~) void
+        +evict() K
+        +moveToMostRecentlyUsed(node: Node~K~) void
     }
 
     class Node~K~ {
         -key: K
         ~next: Node~K~
         ~prev: Node~K~
+        +getKey() K
     }
 
     Cache ..> Storage : uses
